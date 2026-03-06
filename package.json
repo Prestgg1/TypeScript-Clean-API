@@ -8,7 +8,7 @@
     "build": "tsoa spec-and-routes -c src/tsoa.json && bun build src/server.ts --outdir dist --target node --packages bundle",
     "start": "bun --env-file ../.env src/server.ts",
     "dev": "tsoa spec-and-routes -c src/tsoa.json && bun --env-file ../.env --hot src/server.ts",
-        "vercel-build": "bun build src/server.ts --outdir dist --target node --packages bundle"
+        "vercel-build": "echo skip"
   },
   "devDependencies": {
     "@types/bun": "latest",
