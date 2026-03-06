@@ -1,7 +1,7 @@
 {
   "name": "@askorg/api",
   "module": "index.ts",
-  "type": "commonjs",
+  "type": "module",
   "private": true,
   "scripts": {
     
