@@ -322,11 +322,22 @@
 						}
 					}
 				},
+				"description": "Bütün postları və ya seçilmiş kateqoriyaya aid postları gətirir.",
 				"tags": [
 					"Posts"
 				],
 				"security": [],
-				"parameters": []
+				"parameters": [
+					{
+						"description": "Kateqoriya slug-ı (məs: 'elanlar')",
+						"in": "query",
+						"name": "category",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
 			},
 			"post": {
 				"operationId": "Create",
@@ -336,7 +347,15 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"$ref": "#/components/schemas/PostType"
+									"properties": {
+										"data": {
+											"type": "string"
+										}
+									},
+									"required": [
+										"data"
+									],
+									"type": "object"
 								}
 							}
 						}
