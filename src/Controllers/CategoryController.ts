@@ -1,8 +1,8 @@
 import "reflect-metadata";
 import { Controller, Get, Post, Put, Delete, Route, Tags, Body, Path } from "tsoa";
 import { injectable, inject } from "tsyringe";
-import { CategoryService } from "@askorg/core";
-import type { Category, CreateCategoryDto, UpdateCategoryDto } from "@askorg/shared";
+import { CategoryService } from "@askorg/core/services";
+import type { Category, CreateCategoryDto, UpdateCategoryDto } from "@askorg/shared/DTOs";
 
 @injectable()
 @Route("categories")

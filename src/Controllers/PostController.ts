@@ -1,8 +1,8 @@
 import "reflect-metadata";
 import { Controller, Get, Post, Put, Delete, Route, Tags, Body, Path, SuccessResponse } from "tsoa";
 import { injectable, inject } from "tsyringe";
-import { PostService } from "@askorg/core";
-import type { Post as PostType, CreatePostDto, UpdatePostDto } from "@askorg/shared";
+import { PostService } from "@askorg/core/services";
+import type { Post as PostType, CreatePostDto, UpdatePostDto } from "@askorg/shared/DTOs";
 import { Query } from "tsoa";
 @injectable()
 @Route("posts")
@@ -20,11 +20,6 @@ export class PostController extends Controller {
   @Get("/")
   async getAll(@Query() category?: string): Promise<PostType[]> {
     return this.postService.getAll(category);
-  }
-
-  @Get("{id}")
-  async getById(@Path() id: number): Promise<PostType> {
-    return this.postService.getById(id);
   }
 
   @Get("slug/{slug}")
