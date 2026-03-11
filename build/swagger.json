@@ -85,6 +85,57 @@
 				"type": "object",
 				"additionalProperties": false
 			},
+			"PaginatedResult_PostType_": {
+				"properties": {
+					"data": {
+						"items": {
+							"$ref": "#/components/schemas/PostType"
+						},
+						"type": "array"
+					},
+					"meta": {
+						"properties": {
+							"hasPrev": {
+								"type": "boolean"
+							},
+							"hasNext": {
+								"type": "boolean"
+							},
+							"totalPages": {
+								"type": "number",
+								"format": "double"
+							},
+							"limit": {
+								"type": "number",
+								"format": "double"
+							},
+							"page": {
+								"type": "number",
+								"format": "double"
+							},
+							"total": {
+								"type": "number",
+								"format": "double"
+							}
+						},
+						"required": [
+							"hasPrev",
+							"hasNext",
+							"totalPages",
+							"limit",
+							"page",
+							"total"
+						],
+						"type": "object"
+					}
+				},
+				"required": [
+					"data",
+					"meta"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
 			"CreatePostDto": {
 				"properties": {
 					"title": {
@@ -163,38 +214,6 @@
 				},
 				"type": "object",
 				"additionalProperties": false
-			},
-			"AuthTokensDto": {
-				"properties": {
-					"accessToken": {
-						"type": "string"
-					},
-					"refreshToken": {
-						"type": "string"
-					}
-				},
-				"required": [
-					"accessToken",
-					"refreshToken"
-				],
-				"type": "object",
-				"additionalProperties": false
-			},
-			"LoginDto": {
-				"properties": {
-					"email": {
-						"type": "string"
-					},
-					"password": {
-						"type": "string"
-					}
-				},
-				"required": [
-					"email",
-					"password"
-				],
-				"type": "object",
-				"additionalProperties": false
 			}
 		},
 		"securitySchemes": {}
@@ -213,10 +232,7 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"items": {
-										"$ref": "#/components/schemas/PostType"
-									},
-									"type": "array"
+									"$ref": "#/components/schemas/PaginatedResult_PostType_"
 								}
 							}
 						}
@@ -235,6 +251,32 @@
 						"required": false,
 						"schema": {
 							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "limit",
+						"required": false,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"in": "query",
+						"name": "search",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "offset",
+						"required": false,
+						"schema": {
+							"format": "double",
+							"type": "number"
 						}
 					}
 				]
@@ -536,117 +578,6 @@
 						}
 					}
 				]
-			}
-		},
-		"/admin/login": {
-			"post": {
-				"operationId": "Login",
-				"responses": {
-					"200": {
-						"description": "Ok",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/AuthTokensDto"
-								}
-							}
-						}
-					}
-				},
-				"tags": [
-					"Admin"
-				],
-				"security": [],
-				"parameters": [],
-				"requestBody": {
-					"required": true,
-					"content": {
-						"application/json": {
-							"schema": {
-								"$ref": "#/components/schemas/LoginDto"
-							}
-						}
-					}
-				}
-			}
-		},
-		"/admin/refresh": {
-			"post": {
-				"operationId": "RefreshTokens",
-				"responses": {
-					"200": {
-						"description": "Ok",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/AuthTokensDto"
-								}
-							}
-						}
-					}
-				},
-				"tags": [
-					"Admin"
-				],
-				"security": [],
-				"parameters": [],
-				"requestBody": {
-					"required": true,
-					"content": {
-						"application/json": {
-							"schema": {
-								"properties": {
-									"refreshToken": {
-										"type": "string"
-									},
-									"userId": {
-										"type": "number",
-										"format": "double"
-									}
-								},
-								"required": [
-									"refreshToken",
-									"userId"
-								],
-								"type": "object"
-							}
-						}
-					}
-				}
-			}
-		},
-		"/admin/logout": {
-			"post": {
-				"operationId": "Logout",
-				"responses": {
-					"204": {
-						"description": "No content"
-					}
-				},
-				"tags": [
-					"Admin"
-				],
-				"security": [],
-				"parameters": [],
-				"requestBody": {
-					"required": true,
-					"content": {
-						"application/json": {
-							"schema": {
-								"properties": {
-									"userId": {
-										"type": "number",
-										"format": "double"
-									}
-								},
-								"required": [
-									"userId"
-								],
-								"type": "object"
-							}
-						}
-					}
-				}
 			}
 		}
 	},

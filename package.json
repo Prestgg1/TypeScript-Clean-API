@@ -1,6 +1,7 @@
 {
   "name": "@askorg/api",
   "module": "index.ts",
+"main": "build/src/server.js",
   "type": "module",
   "private": true,
   "scripts": {

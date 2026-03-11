@@ -1,5 +1,5 @@
 import "reflect-metadata";
-import { app } from "./index";
+import { app } from "./index.ts";
 
 export default app;
 
@@ -9,3 +9,4 @@ if (process.env.NODE_ENV !== "production") {
     console.log(`Server listening at http://localhost:${port}`)
   );
 }
+

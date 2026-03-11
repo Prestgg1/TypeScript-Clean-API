@@ -1,9 +1,9 @@
 import "reflect-metadata";
-import { Controller, Get, Post, Put, Delete, Route, Tags, Body, Path, SuccessResponse } from "tsoa";
+import { Controller, Get, Post, Put, Delete, Route, Tags, Body, Path } from "tsoa";
 import { injectable, inject } from "tsyringe";
-import { PostService } from "@askorg/core/services";
-import type { Post as PostType, CreatePostDto, UpdatePostDto } from "@askorg/shared/DTOs";
+import type { Post as PostType, CreatePostDto, UpdatePostDto, PaginatedResult } from "@askorg/shared/DTOs";
 import { Query } from "tsoa";
+import { PostService } from "@askorg/core/services";
 @injectable()
 @Route("posts")
 @Tags("Posts")
@@ -13,13 +13,16 @@ export class PostController extends Controller {
   ) {
     super();
   }
-   /**
-   * Bütün postları və ya seçilmiş kateqoriyaya aid postları gətirir.
-   * @param category Kateqoriya slug-ı (məs: 'elanlar')
-   */
+  /**
+  * Bütün postları və ya seçilmiş kateqoriyaya aid postları gətirir.
+  * @param category Kateqoriya slug-ı (məs: 'elanlar')
+  */
   @Get("/")
-  async getAll(@Query() category?: string): Promise<PostType[]> {
-    return this.postService.getAll(category);
+  async getAll(@Query() category?: string,
+    @Query() limit?: number,
+    @Query() search?: string,
+    @Query() offset?: number): Promise<PaginatedResult<PostType>> {
+    return this.postService.getAll({ category, limit, search, offset });
   }
 
   @Get("slug/{slug}")

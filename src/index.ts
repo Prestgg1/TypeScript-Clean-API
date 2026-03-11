@@ -1,7 +1,7 @@
 import "reflect-metadata";
 import { RegisterRoutes } from "./routes";
 import swaggerUi from "swagger-ui-express";
-import { Response as ExResponse, Request as ExRequest, Response } from "express";
+import type { Response as ExResponse, Request as ExRequest, Response } from "express";
 import express, { json, urlencoded } from "express";
 
 export const app = express();
@@ -24,5 +24,6 @@ app.use("/docs", swaggerUi.serve, async (_req: ExRequest, res: ExResponse) => {
 });
 
 app.get("/", (_, res: Response) => {
+
   return res.send(`<h1>Salamlar, ASKORG saytı hazırlanır.</h1>`);
 });
