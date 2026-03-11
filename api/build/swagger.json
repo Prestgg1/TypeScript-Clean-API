@@ -144,9 +144,6 @@
 					"content": {
 						"type": "string"
 					},
-					"slug": {
-						"type": "string"
-					},
 					"imageUrl": {
 						"type": "string"
 					},
@@ -158,7 +155,6 @@
 				"required": [
 					"title",
 					"content",
-					"slug",
 					"imageUrl",
 					"categoryId"
 				],
@@ -320,7 +316,7 @@
 				}
 			}
 		},
-		"/posts/slug/{slug}": {
+		"/posts/{slug}": {
 			"get": {
 				"operationId": "GetBySlug",
 				"responses": {

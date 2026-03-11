@@ -2,6 +2,7 @@ import { NotFoundError } from "@askorg/shared/Exceptions";
 import type { CreatePostDto, PaginatedResult, PostQueryDto, UpdatePostDto } from "@askorg/shared/DTOs";
 import { PostRepository } from "@askorg/database/repositories/post.repository";
 import { singleton, inject } from "tsyringe";
+import slugify from "slugify";
 @singleton()
 export class PostService {
   constructor(
@@ -47,10 +48,13 @@ export class PostService {
 
   async create(dto: CreatePostDto) {
 
-
-    const existing = await this.postRepo.findBySlug(dto.slug);
+    const slug = slugify(dto.title, {
+      lower: true,
+      strict: true,
+    });
+    const existing = await this.postRepo.findBySlug(slug);
     if (existing) throw new NotFoundError("Slug already exists");
-    return this.postRepo.create(dto);
+    return this.postRepo.create(dto, slug);
   }
 
   async update(id: number, dto: UpdatePostDto) {

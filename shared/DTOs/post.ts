@@ -15,7 +15,6 @@ export interface Post {
 export interface CreatePostDto {
   title: string;
   content: string;
-  slug: string;
   imageUrl: string;
   categoryId: number;
 }

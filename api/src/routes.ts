@@ -58,7 +58,6 @@ const models: TsoaRoute.Models = {
         "properties": {
             "title": {"dataType":"string","required":true},
             "content": {"dataType":"string","required":true},
-            "slug": {"dataType":"string","required":true},
             "imageUrl": {"dataType":"string","required":true},
             "categoryId": {"dataType":"double","required":true},
         },
@@ -153,7 +152,7 @@ export function RegisterRoutes(app: Router) {
         const argsPostController_getBySlug: Record<string, TsoaRoute.ParameterSchema> = {
                 slug: {"in":"path","name":"slug","required":true,"dataType":"string"},
         };
-        app.get('/posts/slug/:slug',
+        app.get('/posts/:slug',
             ...(fetchMiddlewares<RequestHandler>(PostController)),
             ...(fetchMiddlewares<RequestHandler>(PostController.prototype.getBySlug)),
 

@@ -25,7 +25,7 @@ export class PostController extends Controller {
     return this.postService.getAll({ category, limit, search, offset });
   }
 
-  @Get("slug/{slug}")
+  @Get("/{slug}")
   async getBySlug(@Path() slug: string): Promise<PostType> {
     return this.postService.getBySlug(slug);
   }

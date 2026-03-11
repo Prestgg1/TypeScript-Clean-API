@@ -101,8 +101,8 @@ export class PostRepository {
     return { ...post, category: category ?? undefined };
   }
 
-  async create(dto: CreatePostDto): Promise<Post | null> {
-    const result = await db.insert(posts).values(dto).returning();
+  async create(dto: CreatePostDto, slug: string): Promise<Post | null> {
+    const result = await db.insert(posts).values({ ...dto, slug }).returning();
     return result[0] ?? null;
   }
 
