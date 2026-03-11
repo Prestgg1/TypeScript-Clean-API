@@ -4,6 +4,7 @@ import swaggerUi from "swagger-ui-express";
 import type { Response as ExResponse, Request as ExRequest, Response } from "express";
 import express, { json, urlencoded } from "express";
 import swaggerDocument from "../build/swagger.json";
+import { apiReference } from "@scalar/express-api-reference";
 
 export const app = express();
 
@@ -27,6 +28,12 @@ app.use("/docs", swaggerUi.serve, async (_req: ExRequest, res: ExResponse) => {
     })
   );
 });
+app.use("/scalar", apiReference({
+  spec: {
+    content: swaggerDocument,
+  },
+}));
+
 
 app.get("/", (_, res: Response) => {
 

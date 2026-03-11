@@ -1,15 +1,14 @@
 {
   "name": "@askorg/api",
   "module": "index.ts",
-"main": "build/src/server.js",
+  "main": "build/src/server.js",
   "type": "module",
   "private": true,
   "scripts": {
-    
     "build": "tsoa spec-and-routes -c src/tsoa.json && bun build src/server.ts --outdir dist --target node --packages bundle",
     "start": "bun --env-file ../.env src/server.ts",
     "dev": "tsoa spec-and-routes -c src/tsoa.json && bun --env-file ../.env --hot src/server.ts",
-        "vercel-build": "echo skip"
+    "vercel-build": "echo skip"
   },
   "devDependencies": {
     "@types/bun": "latest",
@@ -19,9 +18,10 @@
     "@types/swagger-ui-express": "^4.1.8"
   },
   "dependencies": {
-    "@tsoa/runtime": "^6",
     "@askorg/core": "workspace: *",
     "@askorg/shared": "workspace: *",
+    "@scalar/express-api-reference": "^0.9.2",
+    "@tsoa/runtime": "^6",
     "express": "^5.2.1",
     "joi": "^18.0.2",
     "reflect-metadata": "^0.2.2",
