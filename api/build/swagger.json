@@ -579,8 +579,6 @@
 		}
 	},
 	"servers": [
-		{
-			"url": "https://[object Object]/"
-		}
-	]
+    { "url": "https://askorg.vercel.app" }
+  ]
 }
