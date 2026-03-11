@@ -1,0 +1,10 @@
+{
+  "name": "@askorg/shared",
+    "main": "index.ts",
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "name": "@askorg/core",
+  "module": "index.ts",
+  "type": "module",
+  "main": "index.ts",
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "dependencies": {
+    "@askorg/database": "workspace:*",
+    "@askorg/shared": "workspace:*",
+    "@types/jsonwebtoken": "^9.0.10",
+    "bcrypt": "^6.0.0",
+    "jsonwebtoken": "^9.0.3",
+    "reflect-metadata": "^0.2.2",
+    "tsyringe": "^4.10.0"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "name": "askorg",
+  "workspaces": ["api","core","shared","database"],
+  "type": "module",
+  "private": true,
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+ "scripts": {
+    "dev": "bun run --cwd api dev",
+    "start": "bun run --cwd api start",
+    "build": "bun run --filter '*' build",
+    "db:migrate": "bun run --filter @askorg/database db:migrate",
+    "db:generate": "bun run --filter @askorg/database db:generate",
+    "db:studio": "bun run --filter @askorg/database db:studio"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  }
+}
