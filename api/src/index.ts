@@ -22,7 +22,9 @@ app.use("/docs", swaggerUi.serve, async (_req: ExRequest, res: ExResponse) => {
     })
   );
 });
-
+app.get("/swagger.json", async (_req: ExRequest, res: ExResponse) => {
+  return res.json(await import("../build/swagger.json"));
+});
 app.get("/", (_, res: Response) => {
 
   return res.send(`<h1>Salamlar, ASKORG saytı hazırlanır.</h1>`);
