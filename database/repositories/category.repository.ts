@@ -11,7 +11,7 @@ export class CategoryRepository {
 
   async findById(id: number) {
     const result = await db.select().from(categories).where(eq(categories.id, id));
-    
+
     return result[0] ?? null;
   }
 
@@ -20,10 +20,10 @@ export class CategoryRepository {
     return result[0] ?? null;
   }
 
-  async create(dto: CreateCategoryDto): Promise<Category> {
-    const result = await db.insert(categories).values(dto).returning();
+  async create(dto: CreateCategoryDto, slug: string): Promise<Category> {
+    const result = await db.insert(categories).values({ ...dto, slug }).returning();
     if (!result[0]) {
-    throw new InternalServerError("Məlumat bazaya yazıla bilmədi.");
+      throw new InternalServerError("Məlumat bazaya yazıla bilmədi.");
     }
     return result[0];
   }

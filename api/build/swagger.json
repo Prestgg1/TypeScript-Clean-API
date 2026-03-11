@@ -187,14 +187,10 @@
 				"properties": {
 					"name": {
 						"type": "string"
-					},
-					"slug": {
-						"type": "string"
 					}
 				},
 				"required": [
-					"name",
-					"slug"
+					"name"
 				],
 				"type": "object",
 				"additionalProperties": false
@@ -202,9 +198,6 @@
 			"UpdateCategoryDto": {
 				"properties": {
 					"name": {
-						"type": "string"
-					},
-					"slug": {
 						"type": "string"
 					}
 				},

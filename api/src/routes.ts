@@ -80,7 +80,6 @@ const models: TsoaRoute.Models = {
         "dataType": "refObject",
         "properties": {
             "name": {"dataType":"string","required":true},
-            "slug": {"dataType":"string","required":true},
         },
         "additionalProperties": false,
     },
@@ -89,7 +88,6 @@ const models: TsoaRoute.Models = {
         "dataType": "refObject",
         "properties": {
             "name": {"dataType":"string"},
-            "slug": {"dataType":"string"},
         },
         "additionalProperties": false,
     },

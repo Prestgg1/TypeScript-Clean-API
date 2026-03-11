@@ -4,12 +4,13 @@ import { singleton, inject } from "tsyringe";
 import { ConflictError } from "@askorg/shared/Exceptions";
 import { CategoryRepository } from "@askorg/database/repositories";
 import type { Category, CreateCategoryDto, UpdateCategoryDto } from "@askorg/shared/DTOs";
+import slugify from "slugify";
 
 @singleton()
 export class CategoryService {
   constructor(
     @inject(CategoryRepository) private categoryRepo: CategoryRepository
-  ) {}
+  ) { }
 
   async getAll() {
     return this.categoryRepo.findAll();
@@ -22,12 +23,16 @@ export class CategoryService {
   }
 
   async create(dto: CreateCategoryDto): Promise<Category> {
-   const existing = await this.categoryRepo.findBySlug(dto.slug);
-  
-  if (existing) {
-    throw new ConflictError("Bu slug artıq istifadə edilib"); 
-  }
-  return this.categoryRepo.create(dto);
+    const slug = slugify(dto.name, {
+      lower: true,
+      strict: true,
+    });
+    const existing = await this.categoryRepo.findBySlug(slug);
+
+    if (existing) {
+      throw new ConflictError("Bu slug artıq istifadə edilib");
+    }
+    return this.categoryRepo.create(dto);
   }
 
   async update(id: number, dto: UpdateCategoryDto) {
