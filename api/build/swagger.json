@@ -580,7 +580,7 @@
 	},
 	"servers": [
 		{
-			"url": "/"
+			"url": "https://[object Object]/"
 		}
 	]
 }
