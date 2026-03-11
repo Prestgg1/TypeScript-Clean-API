@@ -25,6 +25,7 @@ export interface PostQueryDto {
   page?: number;
   search?: string;
   offset?: number;
+  sort?: boolean
 }
 
 export interface UpdatePostDto {

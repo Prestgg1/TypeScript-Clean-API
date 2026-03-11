@@ -114,6 +114,7 @@ export function RegisterRoutes(app: Router) {
                 limit: {"in":"query","name":"limit","dataType":"double"},
                 search: {"in":"query","name":"search","dataType":"string"},
                 offset: {"in":"query","name":"offset","dataType":"double"},
+                sort: {"in":"query","name":"sort","dataType":"boolean"},
         };
         app.get('/posts',
             ...(fetchMiddlewares<RequestHandler>(PostController)),

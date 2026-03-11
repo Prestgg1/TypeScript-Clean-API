@@ -21,8 +21,10 @@ export class PostController extends Controller {
   async getAll(@Query() category?: string,
     @Query() limit?: number,
     @Query() search?: string,
-    @Query() offset?: number): Promise<PaginatedResult<PostType>> {
-    return this.postService.getAll({ category, limit, search, offset });
+    @Query() offset?: number,
+    @Query() sort?: boolean
+  ): Promise<PaginatedResult<PostType>> {
+    return this.postService.getAll({ category, limit, search, offset, sort });
   }
 
   @Get("/{slug}")

@@ -1,5 +1,5 @@
 import { singleton } from "tsyringe";
-import { and, eq, like, sql } from "drizzle-orm";
+import { and, asc, desc, eq, like, sql } from "drizzle-orm";
 import { posts, categories } from "../schemas";
 import type { CreatePostDto, Post, PostQueryDto, UpdatePostDto } from "@askorg/shared/DTOs";
 import { db } from "../db";
@@ -30,7 +30,7 @@ export class PostRepository {
 
 
 
-    const { category, limit, search, offset } = query;
+    const { category, limit, search, offset, sort } = query;
 
     const conditions = [];
 
@@ -41,7 +41,6 @@ export class PostRepository {
     if (search) {
       conditions.push(like(posts.title, `%${search}%`));
     }
-
     let queryBuilder = db
       .select({
         post: posts,
@@ -53,6 +52,12 @@ export class PostRepository {
 
     if (conditions.length > 0) {
       queryBuilder = queryBuilder.where(and(...conditions));
+    }
+
+    if (sort !== undefined) {
+      queryBuilder = queryBuilder.orderBy(sort ? desc(posts.createdAt) : asc(posts.createdAt));
+    } else {
+      queryBuilder = queryBuilder.orderBy(desc(posts.createdAt));
     }
 
     if (limit) {
