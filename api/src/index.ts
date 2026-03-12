@@ -42,5 +42,5 @@ app.use("/scalar", apiReference({
 */
 app.get("/", (_, res: Response) => {
 
-  return res.send(`<h1>Salamlar, ASKORG saytı hazırlanır.</h1>`);
+  return res.send(`<h1>Salamlar, ASKORG saytı hazırlanır. Mı</h1>`);
 });
