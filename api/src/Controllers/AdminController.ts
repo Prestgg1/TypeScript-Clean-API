@@ -1,4 +1,4 @@
-/* import "reflect-metadata";
+import "reflect-metadata";
 import { Controller, Get, Post, Route, Tags, Body, Path } from "tsoa";
 import { injectable, inject } from "tsyringe";
 import { AuthService } from "@askorg/core/services/auth.service";
@@ -29,5 +29,5 @@ export class AdminController extends Controller {
     await this.authService.logout(body.userId);
     return;
   }
-  
-} */
+
+} 
