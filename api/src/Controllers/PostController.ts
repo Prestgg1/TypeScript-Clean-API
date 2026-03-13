@@ -1,7 +1,7 @@
 import "reflect-metadata";
-import { Controller, Get, Post, Put, Delete, Route, Tags, Body, Path } from "tsoa";
+import { Controller, Get, Post, Put, Delete, Route, Tags, Body, Path, UploadedFile, FormField } from "tsoa";
 import { injectable, inject } from "tsyringe";
-import type { Post as PostType, CreatePostDto, UpdatePostDto, PaginatedResult } from "@askorg/shared/DTOs";
+import type { Post as PostType, UpdatePostDto, PaginatedResult } from "@askorg/shared/DTOs";
 import { Query } from "tsoa";
 import { PostService } from "@askorg/core/services";
 @injectable()
@@ -22,7 +22,7 @@ export class PostController extends Controller {
     @Query() limit?: number,
     @Query() search?: string,
     @Query() offset?: number,
-    @Query() sort?: boolean
+    @Query() sort?: boolean,
   ): Promise<PaginatedResult<PostType>> {
     return this.postService.getAll({ category, limit, search, offset, sort });
   }
@@ -33,9 +33,16 @@ export class PostController extends Controller {
   }
 
   @Post("/")
-  async create(@Body() body: CreatePostDto) {
-    await this.postService.create(body);
-    return { "data": "true" }
+  async create(@FormField() title: string,
+    @FormField() content: string,
+    @FormField() categoryId: string,
+    @UploadedFile("image") image: Express.Multer.File,) {
+    console.log("image", image)
+    await this.postService.create(
+      { title, content, categoryId: parseInt(categoryId, 10) },
+      { buffer: image.buffer, mimetype: image.mimetype, originalname: image.originalname }
+    );
+    return { data: "true" };
   }
 
   @Put("{id}")

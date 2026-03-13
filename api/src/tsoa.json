@@ -1,13 +1,12 @@
 {
   "entryFile": "src/index.ts",
   "noImplicitAdditionalProperties": "throw-on-extras",
-  "controllerPathGlobs": ["src/Controllers/*Controller.ts"],
+  "controllerPathGlobs": [
+    "src/Controllers/*Controller.ts"
+  ],
   "spec": {
     "outputDirectory": "build",
-    "specVersion": 3,
-    "servers": [
-      { "url": "https://askorg.vercel.app" }
-    ]
+    "specVersion": 3
   },
   "routes": {
     "routesDir": "src",

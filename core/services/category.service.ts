@@ -32,7 +32,7 @@ export class CategoryService {
     if (existing) {
       throw new ConflictError("Bu slug artıq istifadə edilib");
     }
-    return this.categoryRepo.create(dto);
+    return this.categoryRepo.create(dto,slug);
   }
 
   async update(id: number, dto: UpdateCategoryDto) {
