@@ -1,12 +1,12 @@
 {
   "name": "askorg",
-  "workspaces": ["api","core","shared","database"],
+  "workspaces": ["api", "core", "shared", "database"],
   "type": "module",
   "private": true,
   "devDependencies": {
     "@types/bun": "latest"
   },
- "scripts": {
+  "scripts": {
     "dev": "bun run --cwd api dev",
     "start": "bun run --cwd api start",
     "build": "bun run --filter '*' build",
@@ -16,5 +16,8 @@
   },
   "peerDependencies": {
     "typescript": "^5"
+  },
+  "dependencies": {
+    "vercel": "^50.32.5"
   }
 }

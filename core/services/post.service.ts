@@ -25,7 +25,7 @@ export class PostService {
     const totalPages = Math.ceil(total / limit);
 
     return {
-      data,
+data,
       meta: {
         total,
         page,

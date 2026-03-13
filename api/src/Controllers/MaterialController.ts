@@ -1,5 +1,5 @@
 import "reflect-metadata";
-import { Controller, Get, Delete, Route, Tags, Path } from "tsoa";
+import { Controller, Get, Delete, Route, Tags, Path, Post, FormField, UploadedFile } from "tsoa";
 import { injectable, inject } from "tsyringe";
 import {  MaterialService } from "@askorg/core/services";
 
@@ -16,6 +16,11 @@ export class MaterialController extends Controller {
   @Get("/")
   async getAll() {
     return this.materialService.getAll();
+  }
+
+  @Post("/")
+  async create(@UploadedFile("file") file: Express.Multer.File) {
+      return this.materialService.create(file);
   }
 
   @Get("{id}")
